@@ -6,7 +6,12 @@ const Promise = require('bluebird');
 const Render = require('./render');
 
 var Form = function(instanceOrModel, options) {
-  this.options = _.merge({}, options);
+  var defaults = {
+    action: '',
+    method: 'post',
+  };
+
+  this.options = _.merge({}, defaults, options);
   this.instanceOrModel = instanceOrModel;
 
   this.fields = this._constructFields(instanceOrModel);
