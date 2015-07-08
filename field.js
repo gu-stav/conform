@@ -46,23 +46,29 @@ Field.prototype = {
 
       _.forEach(self.options.validate, function(validation, index) {
         if(typeof(validation) === 'function') {
-          if(!validator[index]) {
-            validator.extend(index, validation);
-          }
+          validator.extend(index, validation);
         }
 
-        result.valid = validator[index](self.options.value);
+        if(!validator[index]) {
+          return reject(new Error('Validator not defined'));
+        }
+
+        try {
+          result.valid = validator[index](self.options.value);
+        } catch(err) {
+          result.valid = false;
+          result.message = err.message;
+        }
 
         if(result.valid) {
           return resolve();
         }
 
-        if(!result.valid && validation.msg) {
+        if(!result.valid && validation.msg && !result.message) {
           result.message = validation.msg;
         }
 
         result = _.omit(result, ['valid']);
-        console.log('set error for field')
         self.error = result;
         resolve(result);
       });
