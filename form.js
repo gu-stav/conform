@@ -22,7 +22,7 @@ var Form = function(instanceOrModel, options) {
 
 Form.prototype = {
   _isInvalidDate: function(value) {
-    return !!value instanceof Date && isNaN(value.toString())
+    return !!(value instanceof Date && isNaN(value.toString()))
   },
 
   /* Return the type of a certain sequelize-field */
