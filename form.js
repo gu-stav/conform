@@ -66,17 +66,20 @@ Form.prototype = {
     return fields;
   },
 
-  button: function(options) {
-    var defaults = {
-          type: 'submit',
-          name: 'submit',
-        };
+  button: function(optionsOrButton) {
+    var button;
 
     if(!this.buttons) {
       this.buttons = [];
     }
 
-    this.buttons.push(new Button(_.merge({}, options, defaults)));
+    if(optionsOrButton instanceof Button) {
+      button = optionsOrButton;
+    } else {
+      button = new Button(optionsOrButton);
+    }
+
+    this.buttons.push(button);
   },
 
   render: function() {
