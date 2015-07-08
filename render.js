@@ -8,6 +8,6 @@ Render.prototype = {
   render: function(locals) {
     return this.template(locals);
   },
-}
+};
 
 module.exports = Render;

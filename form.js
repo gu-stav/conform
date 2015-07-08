@@ -2,10 +2,12 @@ const _ = require('lodash');
 const Button = require('./button.js');
 const Field = require('./field.js');
 const path = require('path');
+const Promise = require('bluebird');
 const Render = require('./render');
 
 var Form = function(instanceOrModel, options) {
   this.options = _.merge({}, options);
+  this.instanceOrModel = instanceOrModel;
 
   this.fields = this._constructFields(instanceOrModel);
   this.Render = Render;
@@ -38,6 +40,10 @@ Form.prototype = {
         label: seqFieldName,
         name: seqFieldName,
       };
+
+      if(seqField.validate) {
+        options.validate = seqField.validate;
+      }
 
       switch(self._getTypeofSeqField(seqField)) {
         case 'BOOLEAN':
@@ -79,8 +85,30 @@ Form.prototype = {
           fields: this.fields || [],
           buttons: this.buttons || [],
         };
-    console.log(this.Render)
+
+    locals.attributes = _.omit(locals.attributes, ['class']);
     return new this.Render(this.template).render(locals);
+  },
+
+  validate: function() {
+    var errors = {},
+        validateField = function(field) {
+          return field.validate();
+        };
+
+    return Promise.all(_.map(this.fields, validateField))
+            .then(function(err) {
+              return _.compact(err);
+            })
+            .then(function(err) {
+              var errObj = {};
+
+              _.forEach(err, function(error) {
+                errObj[error.name] = _.omit(error, ['name']);
+              });
+
+              return errObj;
+            });
   },
 };
 
