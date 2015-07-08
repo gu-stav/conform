@@ -1,0 +1,7 @@
+form&attributes(attributes).form
+  each field in fields
+    div.form_group
+      !{field.render()}
+  div.form_group
+    each button in buttons
+      !{button.render()}
