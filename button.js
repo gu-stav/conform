@@ -5,10 +5,9 @@ const Render = require('./render');
 var Button = function(options) {
   var defaults = {
         type: 'submit',
-        name: 'submit',
       };
 
-  this.options = _.merge({}, options, defaults);
+  this.options = _.merge({}, defaults, options);
   this.Render = Render;
   this.template = path.join(__dirname, './template/button.jade');
 };
