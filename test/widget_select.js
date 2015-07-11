@@ -28,6 +28,10 @@ describe('Select', function() {
       assert.equal(select.options.length, 2);
       assert.equal(select.options[0].attributes.selected, 'selected');
       assert.equal(select.options[1].attributes.selected, undefined);
+
+      select.value('value-two');
+      assert.equal(select.options[0].attributes.selected, undefined);
+      assert.equal(select.options[1].attributes.selected, 'selected');
     });
   });
 
