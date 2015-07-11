@@ -1,12 +1,9 @@
 Very much **WIP**: Just started this project, because I did not like the APIs of already existing node-form-frameworks. If you want to use it, wait until it reaches the 1.0 release.
 
-** Next steps **
+**1.0 ROADMAP**
 - Documentation
-- Add more methods, to make widgets more abstract
 - API sugar
 - Automatic ID Generation, to apply labels to inputs
-- Browser compatibility (reduce usage of dependencies)
-- Make template parser more pluggable, so different enginges can be used
 
 #Conform#
 A node form-framework, with minimal dependencies, heavily inspired by the great
