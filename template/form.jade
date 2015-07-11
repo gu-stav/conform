@@ -2,7 +2,3 @@ form&attributes(form.attributes)
   if form.fields && form.fields.length > 0
     each field in form.fields
       | !{field.render()}
-
-  if form.buttons && form.buttons.length > 0
-    each button in form.buttons
-      | !{button.render()}

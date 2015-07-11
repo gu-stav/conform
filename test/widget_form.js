@@ -12,13 +12,12 @@ describe('Form', function() {
       var form = new Form([], [], {});
 
       assert.equal(form.fields.length, 0);
-      assert.equal(form.buttons.length, 0);
       assert.equal(form.attributes.action, '');
       assert.equal(form.attributes.method, 'post');
     });
 
     it('should set the right attributes (without defaults)', function() {
-      var form = new Form([], [], {method: 'get', attr: 'test'});
+      var form = new Form([], {method: 'get', attr: 'test'});
 
       assert.equal(form.attributes.action, '');
       assert.equal(form.attributes.attr, 'test');
@@ -37,10 +36,26 @@ describe('Form', function() {
 
     it('should render correct without fields but buttons', function() {
       var button = new Button('Submit'),
-          form = new Form([], [button], {}),
+          form = new Form([button], {}),
           rendered = form.render(),
           expect = '<form method="post" action="">' +
                     '<button type="submit">Submit</button>' +
+                  '</form>';
+
+      assert.equal(rendered, expect);
+    });
+
+    it('should render correct without fields but buttons in groups', function() {
+      var button = new Button('Submit'),
+          button2 = new Button('Cancel'),
+          group = new Group('div', [button, button2]),
+          form = new Form([group], {}),
+          rendered = form.render(),
+          expect = '<form method="post" action="">' +
+                    '<div>' +
+                      '<button type="submit">Submit</button>' +
+                      '<button type="submit">Cancel</button>' +
+                    '</div>' +
                   '</form>';
 
       assert.equal(rendered, expect);
@@ -116,10 +131,13 @@ describe('Form', function() {
 
     it('should work with groups', function(done) {
       var input = new Input({name: 'name', value: 2}),
+          button = new Button('Submit', {name: 'submit'})
           group = new Group('div', [input]),
-          form = new Form([group], []),
+          group2 = new Group('div', [button]),
+          form = new Form([group, group2]),
           data = {
             name: 2,
+            submit: 'text',
           };
 
       input.validators = {

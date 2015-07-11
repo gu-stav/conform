@@ -36,7 +36,7 @@ input.render();
 */
 
 var button = new Button('Submit');
-var form = new Form(input, button);
+var form = new Form([input, button]);
 
 form.render();
 /*
@@ -61,7 +61,7 @@ var Label = conform.Label;
 var label = new Label('Search-Term');
 var input = new Input({type: 'text', name: 'term'}, label);
 var group = new Group('div', [input], {class: 'test'});
-var form = form = new Form(group, button);
+var form = form = new Form([group, button]);
 
 form.render();
 

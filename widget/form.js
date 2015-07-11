@@ -9,14 +9,13 @@ var Form = function() {
 Form.prototype = {
   template: '../template/form.jade',
 
-  init: function(fields, buttons, attributes) {
+  init: function(fields, attributes) {
     var attrDefaults = {
       method: 'post',
       action: '',
     };
 
     this.fields = fields || [];
-    this.buttons = buttons || [];
     this.attributes = _.merge(attrDefaults, attributes);
   },
 
