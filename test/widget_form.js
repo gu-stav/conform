@@ -38,7 +38,9 @@ describe('Form', function() {
       var button = new Button('Submit'),
           form = new Form([], [button], {}),
           rendered = form.render(),
-          expect = '<form method="post" action=""><div><button type="submit">Submit</button></div></form>';
+          expect = '<form method="post" action="">' +
+                    '<button type="submit">Submit</button>' +
+                  '</form>';
 
       assert.equal(rendered, expect);
     });
@@ -48,7 +50,10 @@ describe('Form', function() {
           input = new Input({}, label),
           form = new Form([input], [], {}),
           rendered = form.render(),
-          expect = '<form method="post" action=""><div><label>My Label</label><input type="text"/></div></form>';
+          expect = '<form method="post" action="">' +
+                    '<label>My Label</label>' +
+                    '<input type="text"/>' +
+                  '</form>';
 
       assert.equal(rendered, expect);
     });

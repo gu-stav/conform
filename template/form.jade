@@ -1,10 +1,8 @@
 form&attributes(form.attributes)
   if form.fields && form.fields.length > 0
     each field in form.fields
-      div
-        | !{field.render()}
+      | !{field.render()}
 
   if form.buttons && form.buttons.length > 0
-    div
-      each button in form.buttons
-        | !{button.render()}
+    each button in form.buttons
+      | !{button.render()}
