@@ -8,23 +8,23 @@ Very much **WIP**: Just started this project, because I did not like the APIs of
 - Browser compatibility (reduce usage of dependencies)
 - Make template parser more pluggable, so different enginges can be used
 
-#Seform#
+#Conform#
 A node form-framework, with minimal dependencies, heavily inspired by the great
 python framework [deform](http://deform.readthedocs.org/).
 
 #Installation#
 ```bash
-npm install seform
+npm install conform
 ```
 
 #Usage#
 ```js
-var seaform = require('seaform');
+var conform = require('conform');
 
-var Button = seaform.Button;
-var Form = seaform.Form;
-var Input = seaform.Input;
-var Label = seaform.Label;
+var Button = conform.Button;
+var Form = conform.Form;
+var Input = conform.Input;
+var Label = conform.Label;
 
 var label = new Label('Search-Term');
 var input = new Input({type: 'text', name: 'term'}, label);
