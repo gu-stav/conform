@@ -1,8 +1,8 @@
 if field.label
   | !{field.label.render()}
 select&attributes(field.attributes)
-  each option in field.options
-    | !{option.render()}
+  each ofield in field.fields
+    | !{ofield.render()}
 
 if field.errors
   each error in field.errors

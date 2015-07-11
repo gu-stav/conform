@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const Factory = require('../lib/factory');
+const validateFields = require('../lib/validate-fields');
 
 var Select = function() {
   return this.init.apply(this, arguments);
@@ -10,12 +11,12 @@ Select.prototype.constructor = Select;
 
 Select.prototype.template = '../template/select.jade';
 
-Select.prototype.init = function(options, attributes, label) {
-  if(options && options.length) {
-    this.options = options;
+Select.prototype.init = function(fields, attributes, label) {
+  if(fields && fields.length) {
+    this.fields = fields;
   } else {
-    this.options = [];
-    this.options.push(options);
+    this.fields = [];
+    this.fields.push(fields);
   }
 
   this.value(attributes ? (attributes.value || undefined) : undefined);
@@ -34,18 +35,36 @@ Select.prototype.value = function(value) {
   if(value) {
     this._value = value
 
-    if(this.options && this.options.length > 0) {
-      _.forEach(this.options, function(option) {
-        if(option.attributes.value && option.attributes.value === self._value) {
-          option.attributes.selected = 'selected';
+    if(this.fields && this.fields.length > 0) {
+      _.forEach(this.fields, function(field) {
+        if(field.attributes.value && field.attributes.value === self._value) {
+          field.attributes.selected = 'selected';
         } else {
-          delete option.attributes.selected;
+          delete field.attributes.selected;
         }
       });
     }
   }
 
   return this._value;
+};
+
+Select.prototype.validate = function(data) {
+  var self = this;
+
+  if(typeof(data) !== 'Object') {
+    var origData = data;
+    data = {};
+
+    if(this.attributes.name) {
+      data[this.attributes.name] = origData;
+    }
+  }
+
+  return validateFields(this.fields, data, {name: this.attributes.name || undefined})
+          .then(function(errors) {
+            return self.errors = errors;
+          });
 };
 
 module.exports = Select;

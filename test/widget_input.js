@@ -189,4 +189,33 @@ describe('Input', function() {
       });
     });
   });
+
+  describe('validate + render', function() {
+    it('should render error messages', function(done) {
+      var input = new Input();
+
+      input.validators = {
+        notEmpty: function(value) {
+          return new Promise(function(resolve, reject) {
+            if(value.length === 0) {
+              throw new Error('Is empty');
+            } else {
+              resolve();
+            }
+          });
+        }
+      };
+
+      input
+        .validate('')
+        .then(function(errors) {
+          var rendered = input.render(),
+              expected = '<input type="text"/>' +
+                         '<span class="form_error">Is empty</span>';
+
+          assert.equal(rendered, expected);
+          done();
+        });
+    });
+  });
 });
