@@ -41,13 +41,9 @@ var form = new Form(input, button);
 form.render();
 /*
   <form method="post" action="">
-    <div>
-      <label>Search-Term</label>
-      <input type="text">
-    </div>
-    <div>
-      <button type="submit">Submit</button>
-    </div>
+    <label>Search-Term</label>
+    <input type="text">
+    <button type="submit">Submit</button>
   </form>
 */
 
