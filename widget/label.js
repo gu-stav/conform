@@ -1,11 +1,10 @@
-const path = require('path');
 const Factory = require('./factory');
 
 var Label = function() {
   return this.init.apply(this, arguments);
 };
 
-Label.prototype.template = path.join(__dirname, '../template/label.jade');
+Label.prototype.template = '../template/label.jade';
 
 Label.prototype.init = function(attributes, text) {
   var self = this;

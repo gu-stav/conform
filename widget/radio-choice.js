@@ -2,7 +2,6 @@ const _ = require('lodash');
 const Factory = require('./factory');
 const Input = require('./input');
 const Label = require('./label');
-const path = require('path');
 
 var Choice = function() {
   return this.init.apply(this, arguments);
@@ -11,7 +10,7 @@ var Choice = function() {
 Choice.prototype = new Factory();
 Choice.prototype.constructor = Choice;
 
-Choice.prototype.template = path.join(__dirname, '../template/radio-choice.jade');
+Choice.prototype.template = '../template/radio-choice.jade';
 
 Choice.prototype.init = function(name, choices, label) {
   this.attributes = {

@@ -1,6 +1,5 @@
 const _ = require('lodash');
 const Factory = require('./factory');
-const path = require('path');
 
 var Button = function() {
   this.init.apply(this, arguments);
@@ -9,7 +8,7 @@ var Button = function() {
 Button.prototype = new Factory();
 Button.prototype.constructor = Button;
 
-Button.prototype.template = path.join(__dirname, '../template/button.jade');
+Button.prototype.template = '../template/button.jade';
 
 Button.prototype.init = function(attributes, text) {
   var attrDefaults = {

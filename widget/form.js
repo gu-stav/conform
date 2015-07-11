@@ -1,6 +1,5 @@
 const _ = require('lodash');
 const Factory = require('./factory');
-const path = require('path');
 const Promise = require('bluebird');
 
 var Form = function() {
@@ -8,7 +7,7 @@ var Form = function() {
 };
 
 Form.prototype = {
-  template: path.join(__dirname, '../template/form.jade'),
+  template: '../template/form.jade',
 
   init: function(fields, buttons, attributes) {
     var attrDefaults = {

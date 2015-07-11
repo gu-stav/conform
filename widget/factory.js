@@ -1,6 +1,5 @@
 const _ = require('lodash');
 const ValidationError = require('../lib/error').ValidationError;
-const path = require('path');
 const Promise = require('bluebird');
 const Render = require('../lib/render');
 
