@@ -20,7 +20,7 @@ Select.prototype.init = function(options, attributes, label) {
 
   this.value(attributes ? (attributes.value || undefined) : undefined);
 
-  Factory.prototype.init.apply(this, [attributes, label]);
+  return Factory.prototype.init.apply(this, [attributes, label]);
 };
 
 Select.prototype.render = function() {

@@ -1,0 +1,7 @@
+fieldset&attributes(fieldset.attributes)
+  if fieldset.legend
+    | !{fieldset.legend.render()}
+
+  if(fieldset.fields.length > 0)
+    each field in fieldset.fields
+      | !{field.render()}

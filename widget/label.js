@@ -16,7 +16,6 @@ Label.prototype.init = function(attributes, text) {
 
   this.attributes = attributes || {};
   this.text = text;
-  this._templatePrefix = 'label';
 };
 
 Label.prototype.render = function() {
