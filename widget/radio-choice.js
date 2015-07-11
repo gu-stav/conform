@@ -22,10 +22,10 @@ Choice.prototype.init = function(name, choices, label) {
       type: 'radio',
       name: name,
     },
-    label = new Label({}, choice.text || '');
+    label = new Label({}, choice.text || ''),
+    choiceOptions = _.omit(choice, ['text']);
 
-    choice = _.assign(_.omit(choice, ['text']), defaults);
-    return new Input(choice, label);
+    return new Input(_.merge(defaults, choiceOptions), label);
   };
 
   if(choices && choices.length) {
@@ -34,7 +34,7 @@ Choice.prototype.init = function(name, choices, label) {
     });
   } else {
     this.choices = [];
-    this.choices.push(createChoice(name, choice));
+    this.choices.push(createChoice(name, choices));
   }
 
   Factory.prototype.init.apply(this, [{}, label]);
