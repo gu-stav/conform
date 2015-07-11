@@ -4,5 +4,12 @@
   "description": "",
   "main": "index.js",
   "author": "Gustav Pursche",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^2.9.33",
+    "lodash": "^3.10.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  }
 }
