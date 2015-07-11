@@ -32,9 +32,9 @@ Form.prototype = {
     });
 
     return Promise
-            .settle(fieldPromises)
+            .all(fieldPromises)
             .then(function(errors) {
-              console.log(errors);
+              return _.flatten(errors);
             });
   },
 };
