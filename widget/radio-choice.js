@@ -12,10 +12,10 @@ Choice.prototype.constructor = Choice;
 
 Choice.prototype.template = '../template/radio-choice.jade';
 
-Choice.prototype.init = function(name, choices, label) {
-  this.attributes = {
-    name: name,
-  };
+Choice.prototype.init = function(attributes, choices, label) {
+  var self = this;
+
+  this.attributes = attributes || {};
 
   var createChoice = function(name, choice) {
     var defaults = {
@@ -30,14 +30,36 @@ Choice.prototype.init = function(name, choices, label) {
 
   if(choices && choices.length) {
     this.choices = _.map(choices, function(choice, index) {
-      return createChoice(name, choice);
+      return createChoice(self.attributes.name, choice);
     });
   } else {
     this.choices = [];
-    this.choices.push(createChoice(name, choices));
+    this.choices.push(createChoice(self.attributes.name, choices));
   }
 
+  this.value(this.attributes.value || undefined);
+
   Factory.prototype.init.apply(this, [{}, label]);
+};
+
+Choice.prototype.value = function(value) {
+  var self = this;
+
+  if(value) {
+    this._value = value
+
+    if(this.choices && this.choices.length > 0) {
+      _.forEach(this.choices, function(choice) {
+        if(choice.attributes.value && choice.attributes.value === self._value) {
+          choice.attributes.checked = 'checked';
+        } else {
+          delete choice.attributes.checked;
+        }
+      });
+    }
+  }
+
+  return this._value;
 };
 
 module.exports = Choice;
