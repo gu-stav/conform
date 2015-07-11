@@ -46,9 +46,32 @@ form.render();
     <button type="submit">Submit</button>
   </form>
 */
+```
 
-/* VALIDATION */
+### Advanced Layouts ###
+```js
+var label = new Label('Search-Term');
+var input = new Input({type: 'text', name: 'term'}, label);
+var group = new Group('div', [input], {class: 'test'});
+var form = form = new Form(group, button);
 
+form.render();
+
+/*
+<form method="post" action="">
+  <div class="test">
+    <label>Search-Term</label>
+    <input type="text">
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+*/
+
+```
+
+## VALIDATION ##
+```js
 input.validators = {
   notEmpty: function(value) {
     return new Promise(function(resolve, reject) {
