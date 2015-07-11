@@ -10,11 +10,10 @@ Textarea.prototype.constructor = Textarea;
 
 Textarea.prototype.template = '../template/textarea.jade';
 
-Textarea.prototype.init = function(attributes, label) {
-  this.value = attributes.value || undefined;
-  attributes = _.omit(attributes, ['value']);
-
-  Factory.prototype.init.apply(this, arguments);
+Textarea.prototype.render = function() {
+  this.value = this.attributes.value;
+  this.attributes = _.omit(this.attributes, ['value']);
+  return Factory.prototype.render.apply(this, arguments);
 };
 
 module.exports = Textarea;
