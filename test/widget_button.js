@@ -1,4 +1,4 @@
-var assert = require("assert"),
+var assert = require('assert'),
     Button = require('../widget/button');
 
 describe('Button', function() {
