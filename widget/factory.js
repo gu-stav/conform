@@ -10,7 +10,7 @@ var Factory = function() {
 Factory.prototype = {
   init: function(attributes, label) {
     this.errors = [];
-    this.attributes = attributes;
+    this.attributes = _.merge(this.attributes, attributes);
 
     if(label) {
       this.label = label;
