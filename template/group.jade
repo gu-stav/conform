@@ -1,0 +1,5 @@
+| !{element.tagStart()}
+if element.children
+  each field in element.children
+    | !{field.render()}
+| !{element.tagEnd()}

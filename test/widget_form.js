@@ -3,6 +3,7 @@ var assert = require("assert"),
     Input = require('../widget/input'),
     Form = require('../widget/form'),
     Label = require('../widget/label'),
+    Group = require('../widget/group'),
     Promise = require('bluebird');
 
 describe('Form', function() {
@@ -56,6 +57,19 @@ describe('Form', function() {
                   '</form>';
 
       assert.equal(rendered, expect);
+    });
+
+    it('should allow grouping', function() {
+      var input = new Input({}),
+          group = new Group('div', [input]),
+          form = new Form([group], [], {}),
+          expected = '<form method="post" action="">' +
+                      '<div>' +
+                        '<input type="text"/>' +
+                      '</div>' +
+                     '</form>';
+
+      assert.equal(form.render(), expected);
     });
   });
 
