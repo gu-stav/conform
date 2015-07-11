@@ -1,6 +1,7 @@
 const Button = require('./widget/button');
 const Fieldset = require('./widget/fieldset');
 const Form = require('./widget/form');
+const Group = require('./widget/group');
 const Input = require('./widget/input');
 const Label = require('./widget/label');
 const Legend = require('./widget/legend');
@@ -14,6 +15,7 @@ module.exports = {
   Fieldset: Fieldset,
   Input: Input,
   Form: Form,
+  Group: Group,
   Label: Label,
   Legend: Legend,
   RadioChoice: RadioChoice,
