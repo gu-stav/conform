@@ -1,2 +1,3 @@
-label&attributes(label.attributes) #{label.text}
-textarea&attributes(attributes)
+if label
+  | !{label.render()}
+textarea&attributes(attributes)= value

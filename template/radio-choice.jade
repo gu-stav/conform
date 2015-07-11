@@ -1,0 +1,10 @@
+if label
+  | !{label.render()}
+
+each choice in choices
+  input&attributes(choice.attributes)= choice.text
+  if choice.label
+    | !{choice.label.render()}
+
+if error && error.message
+  span.form_error= error.message

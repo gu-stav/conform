@@ -32,7 +32,7 @@ Form.prototype = {
 
   /* Returns the value for a given field */
   _getValueOfSeqField: function(fieldName) {
-    var value = '';
+    var value;
 
     if( this.instanceOrModel.dataValues &&
         this.instanceOrModel.dataValues[ fieldName ] ) {
@@ -75,6 +75,14 @@ Form.prototype = {
         case 'BOOLEAN':
           options.class = 'input';
           options.type = 'checkbox';
+          options.checked = !!options.value;
+          break;
+
+        case 'ENUM':
+        case 'ARRAY':
+          options.class = 'input-radio';
+          options.type = 'radio';
+          options.values = seqField.values;
           break;
 
         case 'TEXT':

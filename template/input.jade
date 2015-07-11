@@ -1,5 +1,7 @@
-label&attributes(label.attributes)= label.text
+if label
+  | !{label.render()}
 input&attributes(attributes)
 
-if error && error.message
-  span.form_error= error.message
+if errors
+  each error in errors
+    span.form_error= error.message
