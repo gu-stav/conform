@@ -3,7 +3,7 @@ const Factory = require('../lib/factory');
 const validateFields = require('../lib/validate-fields');
 
 var Form = function() {
-  this.init.apply(this, arguments);
+  return this.init.apply(this, arguments);
 };
 
 Form.prototype = {

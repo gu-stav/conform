@@ -2,7 +2,7 @@ const _ = require('lodash');
 const Factory = require('../lib/factory');
 
 var Button = function() {
-  this.init.apply(this, arguments);
+  return this.init.apply(this, arguments);
 };
 
 Button.prototype = new Factory();

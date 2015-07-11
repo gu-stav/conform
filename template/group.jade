@@ -1,5 +1,5 @@
 | !{element.tagStart()}
-if element.children
-  each field in element.children
+if element.fields
+  each field in element.fields
     | !{field.render()}
 | !{element.tagEnd()}

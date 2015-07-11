@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const Factory = require('../lib/factory');
+const validateFields = require('../lib/validate-fields');
 
 var Group = function() {
   return this.init.apply(this, arguments);
@@ -7,8 +8,8 @@ var Group = function() {
 
 Group.prototype.template = '../template/group.jade';
 
-Group.prototype.init = function(type, children, attributes) {
-  this.children = children;
+Group.prototype.init = function(type, fields, attributes) {
+  this.fields = fields;
   this.type = type;
 
   return Factory.prototype.init.apply(this, [attributes]);
@@ -41,6 +42,8 @@ Group.prototype.render = function() {
   return Factory.prototype.render.apply(this, [{prefix: 'element'}]);
 };
 
-delete Group.prototype.validate;
+Group.prototype.validate = function(data) {
+  return validateFields(this.fields, data);
+};
 
 module.exports = Group;

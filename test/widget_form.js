@@ -113,5 +113,34 @@ describe('Form', function() {
           done();
         });
     });
+
+    it('should work with groups', function(done) {
+      var input = new Input({name: 'name', value: 2}),
+          group = new Group('div', [input]),
+          form = new Form([group], []),
+          data = {
+            name: 2,
+          };
+
+      input.validators = {
+        notTwo: function(value) {
+          return new Promise(function(resolve, reject) {
+            if(value === 2) {
+              throw new Error('Should not equals 2');
+            } else {
+              resolve();
+            }
+          });
+        },
+      };
+
+      form
+        .validate(data)
+        .then(function(errors) {
+          assert.equal(errors.length, 1);
+          assert.equal(errors[0].message, 'Should not equals 2');
+          done();
+        });
+    });
   });
 });

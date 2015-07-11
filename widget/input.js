@@ -1,7 +1,7 @@
 const Factory = require('../lib/factory');
 
 var Input = function() {
-  this.init.apply(this, arguments);
+  return this.init.apply(this, arguments);
 };
 
 Input.prototype = new Factory();

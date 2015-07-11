@@ -1,7 +1,8 @@
 const Factory = require('../lib/factory');
+const validateFields = require('../lib/validate-fields');
 
 var Fieldset = function() {
-  this.init.apply(this, arguments);
+  return this.init.apply(this, arguments);
 };
 
 Fieldset.prototype = new Factory();
@@ -30,6 +31,8 @@ Fieldset.prototype.render = function() {
   return Factory.prototype.render.apply(this, [{prefix: 'fieldset'}]);
 }
 
-delete Fieldset.prototype.validate;
+Fieldset.prototype.validate = function(data) {
+  return validateFields(this.fields, data);
+};
 
 module.exports = Fieldset;
