@@ -22,18 +22,18 @@ describe('Input', function() {
 
   describe('render', function() {
     it('should render correct without label', function() {
-      var input = new Input({attr: 'something', type: 'text'}),
+      var input = new Input({attr: 'something'}),
           rendered = input.render(),
-          expect = '<input attr="something" type="text"/>';
+          expect = '<input type="text" attr="something"/>';
 
       assert.equal(rendered, expect);
     });
 
     it('should render correct with label', function() {
       var label = new Label({}, 'Label'),
-          input = new Input({attr: 'something', type: 'text'}, label),
+          input = new Input({attr: 'something'}, label),
           rendered = input.render(),
-          expect = '<label>Label</label><input attr="something" type="text"/>';
+          expect = '<label>Label</label><input type="text" attr="something"/>';
 
       assert.equal(rendered, expect);
     });

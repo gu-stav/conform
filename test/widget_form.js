@@ -47,7 +47,7 @@ describe('Form', function() {
           input = new Input({}, label),
           form = new Form([input], [], {}),
           rendered = form.render(),
-          expect = '<form method="post" action=""><div><label>My Label</label><input/></div></form>';
+          expect = '<form method="post" action=""><div><label>My Label</label><input type="text"/></div></form>';
 
       assert.equal(rendered, expect);
     });
