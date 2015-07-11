@@ -14,4 +14,6 @@ Option.prototype.init = function(attributes, text) {
   this.text = (text || value) || '';
 };
 
+delete Option.prototype.validate;
+
 module.exports = Option;

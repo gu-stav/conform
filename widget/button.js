@@ -24,4 +24,6 @@ Button.prototype.init = function(attributes, text) {
   this.text = (text || value) || '';
 };
 
+delete Button.prototype.validate;
+
 module.exports = Button;

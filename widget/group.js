@@ -41,4 +41,6 @@ Group.prototype.render = function() {
   return Factory.prototype.render.apply(this, [{prefix: 'element'}]);
 };
 
+delete Group.prototype.validate;
+
 module.exports = Group;

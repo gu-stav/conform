@@ -30,4 +30,6 @@ Fieldset.prototype.render = function() {
   return Factory.prototype.render.apply(this, [{prefix: 'fieldset'}]);
 }
 
+delete Fieldset.prototype.validate;
+
 module.exports = Fieldset;
