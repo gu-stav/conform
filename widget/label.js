@@ -16,8 +16,11 @@ Label.prototype.init = function(attributes, text) {
 
   this.attributes = attributes || {};
   this.text = text;
+  this._templatePrefix = 'label';
 };
 
-Label.prototype.render = Factory.prototype.render;
+Label.prototype.render = function() {
+  return Factory.prototype.render.apply(this, [{prefix: 'label'}]);
+};
 
 module.exports = Label;

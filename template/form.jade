@@ -1,9 +1,10 @@
-form&attributes(attributes)
-  if fields.length > 0
-    each field in fields
+form&attributes(form.attributes)
+  if form.fields && form.fields.length > 0
+    each field in form.fields
       div
         | !{field.render()}
-  if buttons.length > 0
+
+  if form.buttons && form.buttons.length > 0
     div
-      each button in buttons
+      each button in form.buttons
         | !{button.render()}

@@ -4,5 +4,6 @@ each value in values, index
   label&attributes(label.attributes)= value
   input&attributes(attributes)(value=value, id=attributes.id + index)
 
-if error && error.message
-  span.form_error= error.message
+if errors
+  each error in errors
+    span.form_error= error.message

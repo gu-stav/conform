@@ -26,10 +26,33 @@ Factory.prototype = {
     return this.errors.length === 0;
   },
 
-  render: function() {
-    var filepath = path.join(__dirname, this.template);
+  render: function(options) {
+    if(!options) {
+      options = {};
+    }
 
-    return new Render(filepath).render(this);
+    var filepath = path.join(__dirname, this.template);
+    var locals = {};
+    var prefix = options.prefix || 'field';
+
+    locals[prefix] = this;
+    return new Render(filepath).render(locals);
+  },
+
+  value: function(value) {
+    if(value) {
+      if(!this.attributes) {
+        this.attributes = {};
+      }
+
+      return this.attributes.value = value;
+    }
+
+    if(this.attributes && this.attributes.value) {
+      return this.attributes.value;
+    }
+
+    return;
   },
 
   validators: {},

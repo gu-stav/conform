@@ -20,7 +20,9 @@ Form.prototype = {
     this.attributes = _.merge(attrDefaults, attributes);
   },
 
-  render: Factory.prototype.render,
+  render: function() {
+    return Factory.prototype.render.apply(this, [{prefix: 'form'}]);
+  },
 
   validate: function(data) {
     if(!data) {

@@ -1,5 +1,9 @@
-if label
-  | !{label.render()}
-select&attributes(attributes)
-  each option in options
+if field.label
+  | !{field.label.render()}
+select&attributes(field.attributes)
+  each option in field.options
     | !{option.render()}
+
+if field.errors
+  each error in field.errors
+    span.form_error= error.message

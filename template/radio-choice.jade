@@ -1,10 +1,10 @@
-if label
-  | !{label.render()}
+if field.label
+  | !{field.label.render()}
 
-each choice in choices
+each choice in field.choices
   input&attributes(choice.attributes)= choice.text
   if choice.label
     | !{choice.label.render()}
 
-if error && error.message
+if field.error && field.error.message
   span.form_error= error.message

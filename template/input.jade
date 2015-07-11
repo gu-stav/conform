@@ -1,7 +1,7 @@
-if label
-  | !{label.render()}
-input&attributes(attributes)
+if field.label
+  | !{field.label.render()}
+input&attributes(field.attributes)
 
-if errors
-  each error in errors
+if field.errors
+  each error in field.errors
     span.form_error= error.message

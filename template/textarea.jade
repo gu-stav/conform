@@ -1,3 +1,7 @@
-if label
-  | !{label.render()}
-textarea&attributes(attributes)= value
+if field.label
+  | !{field.label.render()}
+textarea&attributes(field.attributes)= field.value()
+
+if field.errors
+  each error in field.errors
+    span.form_error= error.message
