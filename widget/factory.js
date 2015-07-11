@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const ValidationError = require('../lib/error').ValidationError;
+const path = require('path');
 const Promise = require('bluebird');
 const Render = require('../lib/render');
 
@@ -26,7 +27,9 @@ Factory.prototype = {
   },
 
   render: function() {
-    return new Render(this.template).render(this);
+    var filepath = path.join(__dirname, this.template);
+
+    return new Render(filepath).render(this);
   },
 
   validators: {},
