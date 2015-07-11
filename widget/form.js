@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const Factory = require('./factory');
+const Factory = require('../lib/factory');
 const validateFields = require('../lib/validate-fields');
 
 var Form = function() {

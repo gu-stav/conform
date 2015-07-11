@@ -1,4 +1,4 @@
-const Factory = require('./factory');
+const Factory = require('../lib/factory');
 
 var Input = function() {
   this.init.apply(this, arguments);

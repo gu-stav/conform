@@ -1,4 +1,4 @@
-const Factory = require('./factory');
+const Factory = require('../lib/factory');
 const Label = require('./label');
 
 var Legend = function() {

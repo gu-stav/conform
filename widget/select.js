@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const Factory = require('./factory');
+const Factory = require('../lib/factory');
 
 var Select = function() {
   return this.init.apply(this, arguments);

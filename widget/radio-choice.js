@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const Factory = require('./factory');
+const Factory = require('../lib/factory');
 const Input = require('./input');
 const Label = require('./label');
 

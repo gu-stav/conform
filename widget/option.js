@@ -1,4 +1,4 @@
-const Factory = require('./factory');
+const Factory = require('../lib/factory');
 
 var Option = function() {
   return this.init.apply(this, arguments);
