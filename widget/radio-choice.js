@@ -28,15 +28,11 @@ Choice.prototype.init = function(attributes, fields, label) {
     return new Input(_.merge(defaults, fieldOptions), label);
   };
 
-  if(fields && fields.length) {
-    this.fields = _.map(fields, function(field, index) {
-      return createChoice(self.attributes.name, field);
-    });
-  } else {
-    this.fields = [];
-    this.fields.push(createChoice(self.attributes.name, fields));
-  }
 
+  this._addFields(fields);
+  this.fields = _.map(this.fields, function(field, index) {
+    return createChoice(self.attributes.name, field);
+  });
   this.value(this.attributes.value || undefined);
 
   this.validator({
