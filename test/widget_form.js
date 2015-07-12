@@ -9,7 +9,7 @@ var assert = require("assert"),
 describe('Form', function() {
   describe('init', function() {
     it('should set the right attributes (with defaults)', function() {
-      var form = new Form([], [], {});
+      var form = new Form();
 
       assert.equal(form.fields.length, 0);
       assert.equal(form.attributes.action, '');

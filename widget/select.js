@@ -14,13 +14,7 @@ Select.prototype.template = '../template/select.jade';
 Select.prototype.init = function(fields, attributes, label) {
   var self = this;
 
-  if(fields && fields.length) {
-    this.fields = fields;
-  } else {
-    this.fields = [];
-    this.fields.push(fields);
-  }
-
+  this._addFields(fields);
   this.value(attributes ? (attributes.value || undefined) : undefined);
   this.errors = [];
 

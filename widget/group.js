@@ -10,12 +10,16 @@ Group.prototype.template = '../template/group.jade';
 Group.prototype.init = function(type, fields, attributes) {
   var self = this;
 
-  this.fields = fields;
+  this._addFields(fields);
   this.type = type;
   this.required = true;
 
   return Factory.prototype.init.apply(this, [attributes]);
 };
+
+Group.prototype._addFields = function() {
+  return Factory.prototype._addFields.apply(this, arguments);
+}
 
 Group.prototype.tagStart = function() {
   var self = this;

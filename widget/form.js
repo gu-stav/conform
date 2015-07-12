@@ -15,9 +15,13 @@ Form.prototype = {
       action: '',
     };
 
-    this.fields = fields || [];
+    this._addFields(fields);
     this.attributes = _.merge(attrDefaults, attributes);
     this.required = true;
+  },
+
+  _addFields: function() {
+    return Factory.prototype._addFields.apply(this, arguments);
   },
 
   render: function() {
