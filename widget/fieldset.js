@@ -31,7 +31,7 @@ Fieldset.prototype.render = function() {
 }
 
 Fieldset.prototype.validate = function(data) {
-  return Factory.prototype.render.apply(this, arguments);
+  return Factory.prototype.groupValidate.apply(this, arguments);
 };
 
 module.exports = Fieldset;

@@ -12,32 +12,53 @@ Choice.prototype.constructor = Choice;
 
 Choice.prototype.template = '../template/radio-choice.jade';
 
-Choice.prototype.init = function(attributes, choices, label) {
+Choice.prototype.init = function(attributes, fields, label) {
   var self = this;
 
   this.attributes = attributes || {};
 
-  var createChoice = function(name, choice) {
+  var createChoice = function(name, field) {
     var defaults = {
       type: 'radio',
       name: name,
     },
-    label = new Label({}, choice.text || ''),
-    choiceOptions = _.omit(choice, ['text']);
+    label = new Label({}, field.text || ''),
+    fieldOptions = _.omit(field, ['text']);
 
-    return new Input(_.merge(defaults, choiceOptions), label);
+    return new Input(_.merge(defaults, fieldOptions), label);
   };
 
-  if(choices && choices.length) {
-    this.choices = _.map(choices, function(choice, index) {
-      return createChoice(self.attributes.name, choice);
+  if(fields && fields.length) {
+    this.fields = _.map(fields, function(field, index) {
+      return createChoice(self.attributes.name, field);
     });
   } else {
-    this.choices = [];
-    this.choices.push(createChoice(self.attributes.name, choices));
+    this.fields = [];
+    this.fields.push(createChoice(self.attributes.name, fields));
   }
 
   this.value(this.attributes.value || undefined);
+
+  this.validator({
+    _fields: function(value) {
+      return new Promise(function(resolve, reject) {
+        var match = false;
+
+        _.forEach(self.fields, function(field) {
+          if(field.value() === value) {
+            match = true;
+            return false;
+          }
+        });
+
+        if(match === false) {
+          throw new Error('Please select at least one option');
+        } else {
+          resolve();
+        }
+      });
+    },
+  });
 
   Factory.prototype.init.apply(this, [{}, label]);
 };
@@ -48,12 +69,12 @@ Choice.prototype.value = function(value) {
   if(value) {
     this._value = value
 
-    if(this.choices && this.choices.length > 0) {
-      _.forEach(this.choices, function(choice) {
-        if(choice.attributes.value && choice.attributes.value === self._value) {
-          choice.attributes.checked = 'checked';
+    if(this.fields && this.fields.length > 0) {
+      _.forEach(this.fields, function(field) {
+        if(field.attributes.value && field.attributes.value === self._value) {
+          field.attributes.checked = 'checked';
         } else {
-          delete choice.attributes.checked;
+          delete field.attributes.checked;
         }
       });
     }
