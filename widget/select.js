@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const Factory = require('../lib/factory');
-const validateFields = require('../lib/validate-fields');
+const Promise = require('bluebird');
 
 var Select = function() {
   return this.init.apply(this, arguments);
@@ -12,6 +12,8 @@ Select.prototype.constructor = Select;
 Select.prototype.template = '../template/select.jade';
 
 Select.prototype.init = function(fields, attributes, label) {
+  var self = this;
+
   if(fields && fields.length) {
     this.fields = fields;
   } else {
@@ -20,6 +22,28 @@ Select.prototype.init = function(fields, attributes, label) {
   }
 
   this.value(attributes ? (attributes.value || undefined) : undefined);
+  this.errors = [];
+
+  this.validator({
+    _fields: function(value) {
+      return new Promise(function(resolve, reject) {
+        var match = false;
+
+        _.forEach(self.fields, function(field) {
+          if(field.value() === value) {
+            match = true;
+            return false;
+          }
+        });
+
+        if(match === false) {
+          throw new Error('Please select at least one option');
+        } else {
+          resolve();
+        }
+      });
+    },
+  });
 
   return Factory.prototype.init.apply(this, [attributes, label]);
 };
@@ -49,22 +73,8 @@ Select.prototype.value = function(value) {
   return this._value;
 };
 
-Select.prototype.validate = function(data) {
-  var self = this;
-
-  if(typeof(data) !== 'Object') {
-    var origData = data;
-    data = {};
-
-    if(this.attributes.name) {
-      data[this.attributes.name] = origData;
-    }
-  }
-
-  return validateFields(this.fields, data, {name: this.attributes.name || undefined})
-          .then(function(errors) {
-            return self.errors = errors;
-          });
+Select.prototype.validate = function() {
+  return Factory.prototype.validate.apply(this, arguments);
 };
 
 module.exports = Select;

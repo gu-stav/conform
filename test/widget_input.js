@@ -43,19 +43,20 @@ describe('Input', function() {
     it('should not catch valid values', function(done) {
       var input = new Input({type: 'text'});
 
-      input.validators.shouldNotBe2 = function(value) {
-        return new Promise(function(resolve, reject) {
-          if(value === 2) {
-            throw new Error('Value should not equals 2');
-          } else {
-            resolve();
-          }
-        });
-      };
+      input.validator({
+        shouldNotBe2: function(value) {
+          return new Promise(function(resolve, reject) {
+            if(value === 2) {
+              throw new Error('Value should not equals 2');
+            } else {
+              resolve();
+            }
+          });
+        },
+      });
 
       input.validate(3).then(function(errors) {
         assert.equal(errors, undefined);
-        assert.equal(input.errors.length, 0);
         assert.equal(input.isValid(), true);
         done();
       });
@@ -64,15 +65,17 @@ describe('Input', function() {
     it('should catch errors thrown into validator function', function(done) {
       var input = new Input({type: 'text'});
 
-      input.validators.shouldNotBe2 = function(value) {
-        return new Promise(function(resolve, reject) {
-          if(value === 2) {
-            throw new Error('Value should not equals 2');
-          } else {
-            resolve();
-          }
-        });
-      };
+      input.validator({
+        shouldNotBe2: function(value) {
+          return new Promise(function(resolve, reject) {
+            if(value === 2) {
+              throw new Error('Value should not equals 2');
+            } else {
+              resolve();
+            }
+          });
+        },
+      });
 
       input.validate(2).then(function(errors) {
         assert.equal(errors.length, 1);
@@ -87,25 +90,26 @@ describe('Input', function() {
     it('should catch multiple errors', function(done) {
       var input = new Input({type: 'text'});
 
-      input.validators.shouldNotBe2 = function(value) {
-        return new Promise(function(resolve, reject) {
-          if(value === 2) {
-            throw new Error('Value should not equals 2');
-          } else {
-            resolve();
-          }
-        });
-      };
-
-      input.validators.shouldNotBe2or3 = function(value) {
-        return new Promise(function(resolve, reject) {
-          if(value === 3 || value === 2) {
-            throw new Error('Value should not equals 2 or 3');
-          } else {
-            resolve();
-          }
-        });
-      };
+      input.validator({
+        shouldNotBe2: function(value) {
+          return new Promise(function(resolve, reject) {
+            if(value === 2) {
+              throw new Error('Value should not equals 2');
+            } else {
+              resolve();
+            }
+          });
+        },
+        shouldNotBe2or3: function(value) {
+          return new Promise(function(resolve, reject) {
+            if(value === 3 || value === 2) {
+              throw new Error('Value should not equals 2 or 3');
+            } else {
+              resolve();
+            }
+          });
+        },
+      });
 
       input.validate(2).then(function(errors) {
         assert.equal(errors.length, 2);
@@ -122,25 +126,26 @@ describe('Input', function() {
     it('should render errors after validation', function(done) {
       var input = new Input({type: 'text'});
 
-      input.validators.shouldNotBe2 = function(value) {
-        return new Promise(function(resolve, reject) {
-          if(value === 2) {
-            throw new Error('Value should not equals 2');
-          } else {
-            resolve();
-          }
-        });
-      };
-
-      input.validators.shouldNotBe2or3 = function(value) {
-        return new Promise(function(resolve, reject) {
-          if(value === 3 || value === 2) {
-            throw new Error('Value should not equals 2 or 3');
-          } else {
-            resolve();
-          }
-        });
-      };
+      input.validator({
+        shouldNotBe2: function(value) {
+          return new Promise(function(resolve, reject) {
+            if(value === 2) {
+              throw new Error('Value should not equals 2');
+            } else {
+              resolve();
+            }
+          });
+        },
+        shouldNotBe2or3: function(value) {
+          return new Promise(function(resolve, reject) {
+            if(value === 3 || value === 2) {
+              throw new Error('Value should not equals 2 or 3');
+            } else {
+              resolve();
+            }
+          });
+        },
+      });
 
       input.validate(2).then(function(errors) {
         var expect = '<input type="text"/>' +
@@ -156,25 +161,26 @@ describe('Input', function() {
     it('should restore its state after beeing valid again', function(done) {
       var input = new Input({type: 'text'});
 
-      input.validators.shouldNotBe2 = function(value) {
-        return new Promise(function(resolve, reject) {
-          if(value === 2) {
-            throw new Error('Value should not equals 2');
-          } else {
-            resolve();
-          }
-        });
-      };
-
-      input.validators.shouldNotBe2or3 = function(value) {
-        return new Promise(function(resolve, reject) {
-          if(value === 3 || value === 2) {
-            throw new Error('Value should not equals 2 or 3');
-          } else {
-            resolve();
-          }
-        });
-      };
+      input.validator({
+        shouldNotBe2: function(value) {
+          return new Promise(function(resolve, reject) {
+            if(value === 2) {
+              throw new Error('Value should not equals 2');
+            } else {
+              resolve();
+            }
+          });
+        },
+        shouldNotBe2or3: function(value) {
+          return new Promise(function(resolve, reject) {
+            if(value === 3 || value === 2) {
+              throw new Error('Value should not equals 2 or 3');
+            } else {
+              resolve();
+            }
+          });
+        }
+      });
 
       input.validate(2).then(function(errors) {
         input.validate(4).then(function(errors) {
@@ -194,7 +200,7 @@ describe('Input', function() {
     it('should render error messages', function(done) {
       var input = new Input();
 
-      input.validators = {
+      input.validator({
         notEmpty: function(value) {
           return new Promise(function(resolve, reject) {
             if(value.length === 0) {
@@ -203,8 +209,8 @@ describe('Input', function() {
               resolve();
             }
           });
-        }
-      };
+        },
+      });
 
       input
         .validate('')

@@ -66,7 +66,10 @@ describe('Select', function() {
       var select = new Select([option, option2, option3], {name: 'test'});
 
       select.validate(3).then(function(errors) {
-        console.log(errors);
+        assert.equal(errors.length, 1);
+        assert.equal(select.errors.length, 1);
+        assert.equal(select.errors.length, 1);
+        assert.equal(select.errors[0].message, 'Please select at least one option');
         done();
       });
     });

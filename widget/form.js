@@ -1,6 +1,5 @@
 const _ = require('lodash');
 const Factory = require('../lib/factory');
-const validateFields = require('../lib/validate-fields');
 
 var Form = function() {
   return this.init.apply(this, arguments);
@@ -10,6 +9,7 @@ Form.prototype = {
   template: '../template/form.jade',
 
   init: function(fields, attributes) {
+    var self = this;
     var attrDefaults = {
       method: 'post',
       action: '',
@@ -17,14 +17,19 @@ Form.prototype = {
 
     this.fields = fields || [];
     this.attributes = _.merge(attrDefaults, attributes);
+    this.required = true;
   },
 
   render: function() {
     return Factory.prototype.render.apply(this, [{prefix: 'form'}]);
   },
 
-  validate: function(data) {
-    return validateFields(this.fields, data);
+  validator: function() {
+    return Factory.prototype.validator.apply(this, arguments);
+  },
+
+  validate: function() {
+    return Factory.prototype.groupValidate.apply(this, arguments);
   },
 };
 
