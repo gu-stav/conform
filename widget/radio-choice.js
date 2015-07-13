@@ -22,7 +22,7 @@ Choice.prototype.init = function(attributes, fields, label) {
   this.fields = _.map(this.fields, function(field, index) {
     var defaults = {
       type: 'radio',
-      name: name,
+      name: self.attributes ? (self.attributes.name || undefined) : undefined,
     },
     label = new Label({}, field.text || ''),
     fieldOptions = _.omit(field, ['text']);
