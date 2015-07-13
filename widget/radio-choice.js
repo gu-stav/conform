@@ -16,8 +16,10 @@ Choice.prototype.init = function(attributes, fields, label) {
   var self = this;
 
   this.attributes = attributes || {};
+  this._addFields(fields);
 
-  var createChoice = function(name, field) {
+  /* Create choices */
+  this.fields = _.map(this.fields, function(field, index) {
     var defaults = {
       type: 'radio',
       name: name,
@@ -26,13 +28,8 @@ Choice.prototype.init = function(attributes, fields, label) {
     fieldOptions = _.omit(field, ['text']);
 
     return new Input(_.merge(defaults, fieldOptions), label);
-  };
-
-
-  this._addFields(fields);
-  this.fields = _.map(this.fields, function(field, index) {
-    return createChoice(self.attributes.name, field);
   });
+
   this.value(this.attributes.value || undefined);
 
   this.validation({
@@ -56,7 +53,7 @@ Choice.prototype.init = function(attributes, fields, label) {
     },
   });
 
-  Factory.prototype.init.apply(this, [{}, label]);
+  return Factory.prototype.init.apply(this, [{}, label]);
 };
 
 Choice.prototype.value = function(value) {

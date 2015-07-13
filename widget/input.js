@@ -15,7 +15,8 @@ Input.prototype.init = function(attributes, label) {
   };
 
   this.attributes = attrDefaults;
-  Factory.prototype.init.apply(this, arguments);
+
+  return Factory.prototype.init.apply(this, arguments);
 };
 
 module.exports = Input;

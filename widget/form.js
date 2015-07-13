@@ -18,6 +18,8 @@ Form.prototype = {
     this._addFields(fields);
     this.attributes = _.merge(attrDefaults, attributes);
     this.required = true;
+
+    return this;
   },
 
   _addFields: function() {

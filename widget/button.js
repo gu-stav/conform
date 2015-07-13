@@ -15,6 +15,7 @@ Button.prototype.init = function(attributes, text) {
     type: 'submit',
   };
 
+  /* Only text was passed in */
   if(arguments.length === 1 && typeof(attributes) === 'string') {
     text = attributes;
     attributes = {};
@@ -22,6 +23,8 @@ Button.prototype.init = function(attributes, text) {
 
   this.attributes = _.merge({}, attrDefaults, attributes);
   this.text = (text || value) || '';
+
+  return this;
 };
 
 delete Button.prototype.validate;
