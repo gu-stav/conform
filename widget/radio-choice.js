@@ -35,7 +35,7 @@ Choice.prototype.init = function(attributes, fields, label) {
   });
   this.value(this.attributes.value || undefined);
 
-  this.validator({
+  this.validation({
     _fields: function(value) {
       return new Promise(function(resolve, reject) {
         var match = false;

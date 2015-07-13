@@ -28,8 +28,8 @@ Form.prototype = {
     return Factory.prototype.render.apply(this, [{prefix: 'form'}]);
   },
 
-  validator: function() {
-    return Factory.prototype.validator.apply(this, arguments);
+  validation: function() {
+    return Factory.prototype.validation.apply(this, arguments);
   },
 
   validate: function() {

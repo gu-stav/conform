@@ -18,7 +18,7 @@ Select.prototype.init = function(fields, attributes, label) {
   this.value(attributes ? (attributes.value || undefined) : undefined);
   this.errors = [];
 
-  this.validator({
+  this.validation({
     _fields: function(value) {
       return new Promise(function(resolve, reject) {
         var match = false;

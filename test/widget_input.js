@@ -43,7 +43,7 @@ describe('Input', function() {
     it('should not catch valid values', function(done) {
       var input = new Input({type: 'text'});
 
-      input.validator({
+      input.validation({
         shouldNotBe2: function(value) {
           return new Promise(function(resolve, reject) {
             if(value === 2) {
@@ -65,7 +65,7 @@ describe('Input', function() {
     it('should catch errors thrown into validator function', function(done) {
       var input = new Input({type: 'text'});
 
-      input.validator({
+      input.validation({
         shouldNotBe2: function(value) {
           return new Promise(function(resolve, reject) {
             if(value === 2) {
@@ -90,7 +90,7 @@ describe('Input', function() {
     it('should catch multiple errors', function(done) {
       var input = new Input({type: 'text'});
 
-      input.validator({
+      input.validation({
         shouldNotBe2: function(value) {
           return new Promise(function(resolve, reject) {
             if(value === 2) {
@@ -126,7 +126,7 @@ describe('Input', function() {
     it('should render errors after validation', function(done) {
       var input = new Input({type: 'text'});
 
-      input.validator({
+      input.validation({
         shouldNotBe2: function(value) {
           return new Promise(function(resolve, reject) {
             if(value === 2) {
@@ -161,7 +161,7 @@ describe('Input', function() {
     it('should restore its state after beeing valid again', function(done) {
       var input = new Input({type: 'text'});
 
-      input.validator({
+      input.validation({
         shouldNotBe2: function(value) {
           return new Promise(function(resolve, reject) {
             if(value === 2) {
@@ -200,7 +200,7 @@ describe('Input', function() {
     it('should render error messages', function(done) {
       var input = new Input();
 
-      input.validator({
+      input.validation({
         notEmpty: function(value) {
           return new Promise(function(resolve, reject) {
             if(value.length === 0) {

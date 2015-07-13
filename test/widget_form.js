@@ -94,7 +94,7 @@ describe('Form', function() {
           input2 = new Input({name: 'test2', value: 3}),
           form;
 
-      input.validator({
+      input.validation({
         notTwo: function(value) {
           return new Promise(function(resolve, reject) {
             if(value === 2) {
@@ -106,7 +106,7 @@ describe('Form', function() {
         },
       });
 
-      input2.validator({
+      input2.validation({
         notThree: function(value) {
           return new Promise(function(resolve, reject) {
             if(value === 3) {
@@ -140,7 +140,7 @@ describe('Form', function() {
             submit: 'text',
           };
 
-      input.validator({
+      input.validation({
         notTwo: function(value) {
           return new Promise(function(resolve, reject) {
             if(value === 2) {

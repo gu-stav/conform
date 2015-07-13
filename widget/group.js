@@ -48,8 +48,8 @@ Group.prototype.render = function() {
   return Factory.prototype.render.apply(this, [{prefix: 'element'}]);
 };
 
-Group.prototype.validator = function() {
-  return Factory.prototype.validator.apply(this, arguments);
+Group.prototype.validation = function() {
+  return Factory.prototype.validation.apply(this, arguments);
 };
 
 Group.prototype.validate = function() {
