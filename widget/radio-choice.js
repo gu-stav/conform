@@ -15,14 +15,14 @@ Choice.prototype.template = '../template/radio-choice.jade';
 Choice.prototype.init = function(attributes, fields, label) {
   var self = this;
 
-  this.attributes = attributes || {};
+  this.attr(attributes);
   this._addFields(fields);
 
   /* Create choices */
   this.fields = _.map(this.fields, function(field, index) {
     var defaults = {
       type: 'radio',
-      name: self.attributes ? (self.attributes.name || undefined) : undefined,
+      name: self.attr('name'),
     },
     label = new Label({}, field.text || ''),
     fieldOptions = _.omit(field, ['text']);
@@ -64,8 +64,8 @@ Choice.prototype.value = function(value) {
 
     if(this.fields && this.fields.length > 0) {
       _.forEach(this.fields, function(field) {
-        if(field.attributes.value && field.attributes.value === self._value) {
-          field.attributes.checked = 'checked';
+        if(field.value() === self._value) {
+          field.attr('checked', 'checked');
         } else {
           delete field.attributes.checked;
         }

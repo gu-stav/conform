@@ -1,6 +1,6 @@
 if field.label
   | !{field.label.render()}
-select&attributes(field.attributes)
+select&attributes(field.attr())
   each ofield in field.fields
     | !{ofield.render()}
 

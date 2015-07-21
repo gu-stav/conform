@@ -1,7 +1,7 @@
 span.form_label= label.text
 
 each value in values, index
-  label&attributes(label.attributes)= value
+  label&attributes(label.attr())= value
   input&attributes(attributes)(value=value, id=attributes.id + index)
 
 if errors

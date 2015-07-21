@@ -1,6 +1,6 @@
 if field.label
   | !{field.label.render()}
-input&attributes(field.attributes)
+input&attributes(field.attr())
 
 if field.errors
   each error in field.errors

@@ -2,7 +2,7 @@ if field.label
   | !{field.label.render()}
 
 each choice in field.fields
-  input&attributes(choice.attributes)= choice.text
+  input&attributes(choice.attr())= choice.text
   if choice.label
     | !{choice.label.render()}
 

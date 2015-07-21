@@ -1,4 +1,4 @@
-form&attributes(form.attributes)
+form&attributes(form.attr())
   if form.fields && form.fields.length > 0
     each field in form.fields
       | !{field.render()}

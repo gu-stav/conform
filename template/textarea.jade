@@ -1,6 +1,6 @@
 if field.label
   | !{field.label.render()}
-textarea&attributes(field.attributes)= field.value()
+textarea&attributes(field.attr())= field.value()
 
 if field.errors
   each error in field.errors

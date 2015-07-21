@@ -16,7 +16,7 @@ Textarea.prototype.init = function(attributes, label) {
 };
 
 Textarea.prototype.render = function() {
-  this.attributes = _.omit(this.attributes, ['value']);
+  this.attr('value', null);
   return Factory.prototype.render.apply(this, arguments);
 };
 

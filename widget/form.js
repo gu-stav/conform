@@ -8,6 +8,10 @@ var Form = function() {
 Form.prototype = {
   template: '../template/form.jade',
 
+  attr: function() {
+    return Factory.prototype.attr.apply(this, arguments);
+  },
+
   init: function(fields, attributes) {
     var self = this;
     var attrDefaults = {
@@ -16,7 +20,7 @@ Form.prototype = {
     };
 
     this._addFields(fields);
-    this.attributes = _.merge(attrDefaults, attributes);
+    this.attr(_.merge({}, attrDefaults, attributes));
     this.required = true;
 
     return this;

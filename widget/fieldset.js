@@ -12,16 +12,7 @@ Fieldset.prototype.template = '../template/fieldset.jade';
 Fieldset.prototype.init = function(fields, attributes, legend) {
   this.legend = legend;
   this.attributes = attributes;
-
-  if(fields && fields.length) {
-    this.fields = fields;
-  } else {
-    this.fields = [];
-
-    if(!fields instanceof Array) {
-      this.fields.push(fields);
-    }
-  }
+  this._addFields(fields);
 
   return this;
 };

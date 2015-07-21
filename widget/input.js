@@ -10,11 +10,9 @@ Input.prototype.constructor = Input;
 Input.prototype.template = '../template/input.jade';
 
 Input.prototype.init = function(attributes, label) {
-  var attrDefaults = {
+  this.attr({
     type: 'text',
-  };
-
-  this.attributes = attrDefaults;
+  });
 
   return Factory.prototype.init.apply(this, arguments);
 };

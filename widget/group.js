@@ -26,7 +26,7 @@ Group.prototype.tagStart = function() {
   var renderAttributes = function() {
     var attrString = ' ';
 
-    _.forEach(self.attributes, function(value, key) {
+    _.forEach(self.attr(), function(value, key) {
       attrString += key + '="' + value + '"';
     });
 
@@ -39,6 +39,10 @@ Group.prototype.tagStart = function() {
 
   return '<' + this.type + renderAttributes() + '>';
 };
+
+Group.prototype.attr = function() {
+  return Factory.prototype.attr.apply(this, arguments);
+},
 
 Group.prototype.tagEnd = function() {
   return '</' + this.type + '>';

@@ -43,7 +43,7 @@ Select.prototype.init = function(fields, attributes, label) {
 };
 
 Select.prototype.render = function() {
-  this.attributes = _.omit(this.attributes, ['value']);
+  this.attr('value', null);
   return Factory.prototype.render.apply(this, arguments);
 };
 
@@ -55,8 +55,8 @@ Select.prototype.value = function(value) {
 
     if(this.fields && this.fields.length > 0) {
       _.forEach(this.fields, function(field) {
-        if(field.attributes.value && field.attributes.value === self._value) {
-          field.attributes.selected = 'selected';
+        if(field.value() === self._value) {
+          field.attr('selected', 'selected');
         } else {
           delete field.attributes.selected;
         }

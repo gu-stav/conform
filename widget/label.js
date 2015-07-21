@@ -25,4 +25,8 @@ Label.prototype.render = function() {
   return Factory.prototype.render.apply(this, [{prefix: 'label'}]);
 };
 
+Label.prototype.attr = function() {
+  return Factory.prototype.attr.apply(this, arguments);
+};
+
 module.exports = Label;
