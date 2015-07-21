@@ -9,7 +9,6 @@ var Choice = function() {
 
 Choice.prototype = new Factory();
 Choice.prototype.constructor = Choice;
-
 Choice.prototype.template = '../template/radio-choice.jade';
 
 Choice.prototype.init = function(attributes, fields, label) {
@@ -20,12 +19,29 @@ Choice.prototype.init = function(attributes, fields, label) {
 
   /* Create choices */
   this.fields = _.map(this.fields, function(field, index) {
-    var defaults = {
+    var labelId,
+    defaults = {
       type: 'radio',
       name: self.attr('name'),
     },
     label = new Label({}, field.text || ''),
     fieldOptions = _.omit(field, ['text']);
+
+    if(!fieldOptions.id) {
+      if(self.attr('id')) {
+        labelId = self.attr('id') + '-' + index;
+      } else {
+        labelId = _.uniqueId('el_') + '-' + index;
+      }
+
+      fieldOptions.id = labelId;
+    } else {
+      labelId = fieldOptions.id;
+    }
+
+    label.attr({
+      for: labelId,
+    });
 
     return new Input(_.merge(defaults, fieldOptions), label);
   });

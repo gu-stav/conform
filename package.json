@@ -11,6 +11,7 @@
     "lodash": "^3.10.0"
   },
   "devDependencies": {
+    "chai": "^3.2.0",
     "mocha": "^2.2.5"
   }
 }

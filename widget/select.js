@@ -8,7 +8,6 @@ var Select = function() {
 
 Select.prototype = new Factory();
 Select.prototype.constructor = Select;
-
 Select.prototype.template = '../template/select.jade';
 
 Select.prototype.init = function(fields, attributes, label) {
@@ -16,7 +15,6 @@ Select.prototype.init = function(fields, attributes, label) {
 
   this._addFields(fields);
   this.value(attributes ? (attributes.value || undefined) : undefined);
-  this.errors = [];
 
   this.validation({
     _fields: function(value) {
@@ -65,10 +63,6 @@ Select.prototype.value = function(value) {
   }
 
   return this._value;
-};
-
-Select.prototype.validate = function() {
-  return Factory.prototype.validate.apply(this, arguments);
 };
 
 module.exports = Select;

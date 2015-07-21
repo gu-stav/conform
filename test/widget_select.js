@@ -7,7 +7,7 @@ describe('Select', function() {
   describe('init', function () {
     it('should render with a single option', function() {
       var option = new Option({value: 'value'}, 'text'),
-          select = new Select(option, {name: 'name'}, 'label-text');
+          select = new Select(option, {name: 'name'}, new Label('Label'));
 
       assert.equal(select.fields.length, 1);
     });
@@ -45,11 +45,11 @@ describe('Select', function() {
     });
 
     it('should render correct with a single option', function () {
-      var select = new Select(option, {attr: 'something', value: 'value'}, label);
+      var select = new Select(option, {attr: 'something', value: 'value', id: 'testid'}, label);
 
       var rendered = select.render(),
-          expect = '<label attr="Label">Label</label>' +
-                   '<select attr="something">' +
+          expect = '<label attr="Label" for="testid">Label</label>' +
+                   '<select attr="something" id="testid">' +
                     '<option value="value" selected="selected">text</option>' +
                    '</select>';
 

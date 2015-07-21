@@ -31,9 +31,10 @@ describe('Input', function() {
 
     it('should render correct with label', function() {
       var label = new Label({}, 'Label'),
-          input = new Input({attr: 'something'}, label),
+          input = new Input({attr: 'something', id: 'myId'}, label),
           rendered = input.render(),
-          expect = '<label>Label</label><input type="text" attr="something"/>';
+          expect = '<label for="myId">Label</label>' +
+                   '<input type="text" attr="something" id="myId"/>';
 
       assert.equal(rendered, expect);
     });

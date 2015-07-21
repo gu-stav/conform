@@ -63,12 +63,12 @@ describe('Form', function() {
 
     it('should render correct with fields but without buttons', function() {
       var label = new Label('My Label'),
-          input = new Input({}, label),
+          input = new Input({id: 'test'}, label),
           form = new Form([input], [], {}),
           rendered = form.render(),
           expect = '<form method="post" action="">' +
-                    '<label>My Label</label>' +
-                    '<input type="text"/>' +
+                    '<label for="test">My Label</label>' +
+                    '<input type="text" id="test"/>' +
                   '</form>';
 
       assert.equal(rendered, expect);

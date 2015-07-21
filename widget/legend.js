@@ -7,7 +7,6 @@ var Legend = function() {
 
 Legend.prototype = new Label();
 Legend.prototype.constructor = Legend;
-
 Legend.prototype.template = '../template/legend.jade';
 
 Legend.prototype.render = function() {

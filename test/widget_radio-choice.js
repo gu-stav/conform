@@ -1,4 +1,5 @@
-var assert = require("assert"),
+var chai = require('chai'),
+    assert = chai.assert,
     Label = require('../widget/label'),
     RadioChoice = require('../widget/radio-choice');
 
@@ -63,17 +64,36 @@ describe('Radio Choice', function() {
     var radio;
 
     before(function() {
-      radio = new RadioChoice({name: 'name'}, fields);
+      radio = new RadioChoice({name: 'name', id: 'test'}, fields);
     });
 
     it('should render correct with multiple options', function () {
       var rendered = radio.render(),
-          expect = '<input type="radio" name="name"/>' +
-                   '<label>Choice 1</label>' +
-                   '<input type="radio" name="name"/>' +
-                   '<label>Choice 2</label>';
+          expect = '<input type="radio" name="name" id="test-0"/>' +
+                   '<label for="test-0">Choice 1</label>' +
+                   '<input type="radio" name="name" id="test-1"/>' +
+                   '<label for="test-1">Choice 2</label>';
 
       assert.equal(rendered, expect);
+    });
+
+    it('should handle its IDs', function () {
+      var myRadio = new RadioChoice({name: 'name', id: 'test'}, fields);
+
+      var rendered = myRadio.render(),
+          expect = '<input type="radio" name="name" id="test-0"/>' +
+                   '<label for="test-0">Choice 1</label>' +
+                   '<input type="radio" name="name" id="test-1"/>' +
+                   '<label for="test-1">Choice 2</label>';
+
+      assert.equal(rendered, expect);
+
+      myRadio = new RadioChoice({name: 'name'}, fields);
+      rendered = myRadio.render();
+
+      assert.match(myRadio.fields[0].attr('id'), /el_[0-9]\-[0-9]/);
+      assert.match(myRadio.fields[1].attr('id'), /el_[0-9]\-[0-9]/);
+      assert.notEqual(myRadio.fields[0].attr('id'), myRadio.fields[1].attr('id'))
     });
   });
 });

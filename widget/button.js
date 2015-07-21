@@ -7,7 +7,6 @@ var Button = function() {
 
 Button.prototype = new Factory();
 Button.prototype.constructor = Button;
-
 Button.prototype.template = '../template/button.jade';
 
 Button.prototype.init = function(attributes, text) {

@@ -7,7 +7,6 @@ var Textarea = function() {
 
 Textarea.prototype = new Factory();
 Textarea.prototype.constructor = Textarea;
-
 Textarea.prototype.template = '../template/textarea.jade';
 
 Textarea.prototype.init = function(attributes, label) {

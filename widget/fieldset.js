@@ -6,7 +6,6 @@ var Fieldset = function() {
 
 Fieldset.prototype = new Factory();
 Fieldset.prototype.constructor = Fieldset;
-
 Fieldset.prototype.template = '../template/fieldset.jade';
 
 Fieldset.prototype.init = function(fields, attributes, legend) {

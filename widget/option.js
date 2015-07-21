@@ -6,7 +6,6 @@ var Option = function() {
 
 Option.prototype = new Factory();
 Option.prototype.constructor = Option;
-
 Option.prototype.template = '../template/option.jade';
 
 Option.prototype.init = function(attributes, text) {
