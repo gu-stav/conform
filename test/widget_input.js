@@ -141,7 +141,7 @@ describe('Input', function() {
 
       input
         .validate({
-          test: 4,
+          bla: 4,
         })
         .then(function(errors) {
           assert.equal(errors.length, 1);
