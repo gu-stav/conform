@@ -175,11 +175,11 @@ describe('Input', function() {
       });
 
       input.validate(2).then(function(errors) {
-        var expect = '<input type="text"/>' +
+        var expect = '<input type="text" value="2"/>' +
                      '<span class="form_error">Value should not equals 2</span>' +
                      '<span class="form_error">Value should not equals 2 or 3</span>';
-        input = input.render();
 
+        input = input.render();
         assert.equal(input, expect);
         done();
       });
@@ -214,7 +214,7 @@ describe('Input', function() {
           assert.equal(errors, undefined);
 
           var rendered = input.render(),
-              expect = '<input type="text"/>';
+              expect = '<input type="text" value="4"/>';
 
           assert.equal(rendered, expect);
           done();
