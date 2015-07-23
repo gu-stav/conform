@@ -124,6 +124,32 @@ describe('Input', function() {
       });
     });
 
+    it('should be able to accept objects', function(done) {
+      var input = new Input({type: 'text', name: 'test'});
+
+      input.validation({
+        shouldNotBeEmpty: function(value) {
+          return new Promise(function(resolve, reject) {
+            if(!value) {
+              throw new Error('Value should not be empty');
+            } else {
+              resolve();
+            }
+          });
+        },
+      });
+
+      input
+        .validate({
+          test: 4,
+        })
+        .then(function(errors) {
+          assert.equal(errors.length, 1);
+          assert.equal(errors[0].message, 'Value should not be empty');
+          done();
+        });
+    });
+
     it('should render errors after validation', function(done) {
       var input = new Input({type: 'text'});
 
