@@ -88,6 +88,44 @@ describe('Form', function() {
     });
   });
 
+  describe('data', function() {
+    it('should set the value for each field', function() {
+      var input = new Input({name: 'test'}),
+          input2 = new Input({name: 'test2'}),
+          group = new Group('div', [input, input2]),
+          form = new Form([group], [], {}),
+          data = {
+            test: 1,
+            test2: null,
+          };
+
+      form.data(data);
+
+      assert.equal(form.fields[0].fields[0].value(), 1);
+      assert.equal(form.fields[0].fields[1].value(), null);
+    });
+
+    it('should allow chaining .data() and .render()', function() {
+      var input = new Input({name: 'test'}),
+          input2 = new Input({name: 'test2'}),
+          group = new Group('div', [input, input2]),
+          form = new Form([group], [], {}),
+          data = {
+            test: 1,
+            test2: 'blubb',
+          },
+          rendered = form.data(data).render(),
+          expected = '<form method="post" action="">' +
+                      '<div>' +
+                        '<input type="text" name="test" value="1"/>' +
+                        '<input type="text" name="test2" value="blubb"/>' +
+                      '</div>' +
+                     '</form>';
+
+      assert.equal(rendered, expected);
+    });
+  });
+
   describe('validate', function() {
     it('should validate all fields and return the errors', function(done) {
       var input = new Input({name: 'test', value: 2}),

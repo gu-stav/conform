@@ -42,7 +42,11 @@ Group.prototype.tagStart = function() {
 
 Group.prototype.attr = function() {
   return Factory.prototype.attr.apply(this, arguments);
-},
+};
+
+Group.prototype.data = function() {
+  return Factory.prototype.data.apply(this, arguments);
+};
 
 Group.prototype.tagEnd = function() {
   return '</' + this.type + '>';

@@ -12,6 +12,10 @@ Form.prototype = {
     return Factory.prototype.attr.apply(this, arguments);
   },
 
+  data: function() {
+    return Factory.prototype.data.apply(this, arguments);
+  },
+
   init: function(fields, attributes) {
     var self = this;
     var attrDefaults = {

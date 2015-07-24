@@ -20,6 +20,39 @@ describe('Input', function() {
     });
   });
 
+  describe('value', function() {
+    it('should set the value', function() {
+      var input = new Input();
+
+      input.value(5);
+
+      assert.equal(input.value(), 5);
+    });
+
+    it('should make parameter for validate() obsolete', function(done) {
+      var input = new Input();
+
+      input.validation({
+        shouldNotBe5: function(value) {
+          return new Promise(function(resolve, reject) {
+            if(value === 5) {
+              throw new Error('Value should not equals 5');
+            } else {
+              resolve();
+            }
+          });
+        },
+      });
+
+      input.value(5).validate().then(function(errors) {
+        assert.equal(input.value(), 5);
+        assert.equal(errors.length, 1);
+        assert.equal(input.isValid(), false);
+        done();
+      });
+    });
+  });
+
   describe('render', function() {
     it('should render correct without label', function() {
       var input = new Input({attr: 'something'}),
@@ -175,7 +208,7 @@ describe('Input', function() {
       });
 
       input.validate(2).then(function(errors) {
-        var expect = '<input type="text" value="2"/>' +
+        var expect = '<input type="text"/>' +
                      '<span class="form_error">Value should not equals 2</span>' +
                      '<span class="form_error">Value should not equals 2 or 3</span>';
 
@@ -214,12 +247,30 @@ describe('Input', function() {
           assert.equal(errors, undefined);
 
           var rendered = input.render(),
-              expect = '<input type="text" value="4"/>';
+              expect = '<input type="text"/>';
 
           assert.equal(rendered, expect);
           done();
         });
       });
+    });
+  });
+
+  describe('data', function() {
+    it('should treat .data() as alias to .value()', function() {
+      var input = new Input({name: 'test'});
+
+      input.data({test: 'ha'});
+
+      assert.equal(input.value(), 'ha');
+    });
+
+    it('should preserve the value for render()', function() {
+      var input = new Input({name: 'test'}),
+          rendered = input.data({test: 'ha'}).render(),
+          expected = '<input type="text" name="test" value="ha"/>';
+
+      assert.equal(rendered, expected);
     });
   });
 
