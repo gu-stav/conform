@@ -6,12 +6,12 @@
   "author": "Gustav Pursche",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^2.9.33",
+    "bluebird": "^2.10.0",
     "jade": "^1.11.0",
-    "lodash": "^3.10.0"
+    "lodash": "^3.10.1"
   },
   "devDependencies": {
     "chai": "^3.2.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.3.2"
   }
 }
