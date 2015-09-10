@@ -1,6 +1,6 @@
 #Conform#
 A node form-framework, with minimal dependencies, heavily inspired by the great
-python framework [deform](http://deform.readthedocs.org/).
+python framework [deform](http://deform.readthedocs.org/). It's template based, allows different template engines and provides an API, which is closely connected to the rendered HTML.
 
 #Installation#
 ```bash
