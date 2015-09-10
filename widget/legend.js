@@ -1,12 +1,12 @@
 const Factory = require('../lib/factory');
 const Label = require('./label');
+const util = require('util');
 
 var Legend = function() {
   return this.init.apply(this, arguments);
 };
 
-Legend.prototype = new Label();
-Legend.prototype.constructor = Legend;
+util.inherits(Legend, Label);
 Legend.prototype.template = '../template/legend.jade';
 
 Legend.prototype.render = function() {

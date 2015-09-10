@@ -1,13 +1,13 @@
 const _ = require('lodash');
 const Factory = require('../lib/factory');
 const Promise = require('bluebird');
+const util = require('util');
 
 var Select = function() {
   return this.init.apply(this, arguments);
 };
 
-Select.prototype = new Factory();
-Select.prototype.constructor = Select;
+util.inherits(Select, Factory);
 Select.prototype.template = '../template/select.jade';
 
 Select.prototype.init = function(fields, attributes, label) {

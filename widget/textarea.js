@@ -1,12 +1,12 @@
 const _ = require('lodash');
 const Factory = require('../lib/factory');
+const util = require('util');
 
 var Textarea = function() {
   return this.init.apply(this, arguments);
 };
 
-Textarea.prototype = new Factory();
-Textarea.prototype.constructor = Textarea;
+util.inherits(Textarea, Factory);
 Textarea.prototype.template = '../template/textarea.jade';
 
 Textarea.prototype.init = function(attributes, label) {

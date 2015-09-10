@@ -1,12 +1,12 @@
 const _ = require('lodash');
 const Factory = require('../lib/factory');
+const util = require('util');
 
 var Button = function() {
   return this.init.apply(this, arguments);
 };
 
-Button.prototype = new Factory();
-Button.prototype.constructor = Button;
+util.inherits(Button, Factory);
 Button.prototype.template = '../template/button.jade';
 
 Button.prototype.init = function(attributes, text) {

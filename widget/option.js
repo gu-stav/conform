@@ -1,11 +1,11 @@
 const Factory = require('../lib/factory');
+const util = require('util');
 
 var Option = function() {
   return this.init.apply(this, arguments);
 };
 
-Option.prototype = new Factory();
-Option.prototype.constructor = Option;
+util.inherits(Option, Factory)
 Option.prototype.template = '../template/option.jade';
 
 Option.prototype.init = function(attributes, text) {

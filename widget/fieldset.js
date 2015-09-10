@@ -1,11 +1,11 @@
 const Factory = require('../lib/factory');
+const util = require('util');
 
 var Fieldset = function() {
   return this.init.apply(this, arguments);
 };
 
-Fieldset.prototype = new Factory();
-Fieldset.prototype.constructor = Fieldset;
+util.inherits(Fieldset, Factory);
 Fieldset.prototype.template = '../template/fieldset.jade';
 
 Fieldset.prototype.init = function(fields, attributes, legend) {

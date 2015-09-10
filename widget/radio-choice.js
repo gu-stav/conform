@@ -2,13 +2,13 @@ const _ = require('lodash');
 const Factory = require('../lib/factory');
 const Input = require('./input');
 const Label = require('./label');
+const util = require('util');
 
 var Choice = function() {
   return this.init.apply(this, arguments);
 };
 
-Choice.prototype = new Factory();
-Choice.prototype.constructor = Choice;
+util.inherits(Choice, Factory);
 Choice.prototype.template = '../template/radio-choice.jade';
 
 Choice.prototype.init = function(attributes, fields, label) {
