@@ -1,10 +1,3 @@
-Very much **WIP**: Just started this project, because I did not like the APIs of already existing node-form-frameworks. If you want to use it, wait until it reaches the 1.0 release.
-
-**1.0 ROADMAP**
-- Documentation
-- API sugar
-- Automatic ID Generation, to apply labels to inputs
-
 #Conform#
 A node form-framework, with minimal dependencies, heavily inspired by the great
 python framework [deform](http://deform.readthedocs.org/).
